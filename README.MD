@@ -12,6 +12,8 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 - [ ] Depósitos;
 - [ ] Inativação;
 
+- [x] Teste unitários (parcial);
+
 ---
 
 ## 📄 Documentação
@@ -34,6 +36,8 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 - **[JWT](https://jwt.io/)**
 - **[Swagger](https://swagger.io/)**
 - **[OpenAPI](https://www.openapis.org/)**
+- **[Mockito](https://github.com/mockito/mockito)**
+
 ---
 
 ## 👨‍🚀 Deploy
