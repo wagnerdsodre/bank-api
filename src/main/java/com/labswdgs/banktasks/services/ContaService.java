@@ -1,6 +1,8 @@
 package com.labswdgs.banktasks.services;
 
 import com.labswdgs.banktasks.entities.Conta;
+import com.labswdgs.banktasks.exceptions.ResourceNotFoundException;
+import com.labswdgs.banktasks.exceptions.SaldoInsuficienteException;
 import com.labswdgs.banktasks.repositories.ContaRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -15,8 +17,8 @@ public class ContaService {
   private ContaRepository contaRepository;
 
   public ResponseEntity<Conta> getConta(Long id) {
-    Conta conta = contaRepository.findById(id).orElse(null);
-
+    Conta conta = contaRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Resource Not found"));
     return ResponseEntity.ok().body(conta);
   }
 
@@ -51,9 +53,31 @@ public class ContaService {
 
 
   @Transactional
-  public void realizarSaque(Long pessoaFisicaId, double valor) {
-    
+  public void realizarSaque(Long id, double valor) {
+    Conta conta = contaRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Resource Not found"));
+    conta.setSaldo(conta.getSaldo()-valor);
+
+    if (conta.getSaldo() >= valor) {
+      conta.setSaldo(conta.getSaldo() - valor);
+      contaRepository.save(conta);
+    } else {
+      throw new SaldoInsuficienteException("Saldo insuficiente para o saque.");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
   }
+
 
 
 }

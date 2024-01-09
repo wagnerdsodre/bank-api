@@ -25,8 +25,9 @@ public class PessoaFisicaController {
   @Autowired
   private PessoaFisicaService pessoaFisicaService;
 
-  @GetMapping("/{id}")
-  public PessoaFisica getPessoaFisica(@PathVariable Long id) {
+
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<PessoaFisica> getPessoaFisica(@PathVariable Long id) {
     return pessoaFisicaService.getPessoaFisica(id);
   }
 

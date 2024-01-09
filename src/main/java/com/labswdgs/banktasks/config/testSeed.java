@@ -6,8 +6,11 @@ import com.labswdgs.banktasks.entities.Endereco.Endereco;
 import com.labswdgs.banktasks.entities.PessoaFisica;
 import com.labswdgs.banktasks.entities.PessoaJuridica;
 import com.labswdgs.banktasks.entities.enums.TipoConta;
+import com.labswdgs.banktasks.exceptions.ContaNaoEncontradaException;
+import com.labswdgs.banktasks.exceptions.SaldoInsuficienteException;
 import com.labswdgs.banktasks.repositories.PessoaFisicaRepository;
 import com.labswdgs.banktasks.services.AgenciaService;
+import com.labswdgs.banktasks.services.ContaService;
 import com.labswdgs.banktasks.services.PessoaFisicaService;
 import com.labswdgs.banktasks.services.PessoaJuridicaService;
 import java.util.Collections;
@@ -29,10 +32,12 @@ public class testSeed implements CommandLineRunner {
 
   @Autowired
   private PessoaJuridicaService pessoaJuridicaService;
-  
 
   @Autowired
   private PessoaFisicaRepository pessoaFisicaRepository;
+
+  @Autowired
+  private ContaService contaService;
 
 
   @Override
@@ -55,9 +60,16 @@ public class testSeed implements CommandLineRunner {
     Conta conta = new Conta(123, 1000.0, TipoConta.PESSOAFISICA);
     conta.setPessoaFisica(pessoaFisica);
     pessoaFisica.setContas(Collections.singletonList(conta));
-
-
     pessoaFisicaService.criarPessoaFisica(pessoaFisica);
+
+    try {
+      contaService.realizarSaque(conta.getId(), 300.0);
+    } catch (ContaNaoEncontradaException | SaldoInsuficienteException e) {
+      e.printStackTrace();
+    }
+
+
+
 
     // Seed para PessoaJuridica
     PessoaJuridica pessoaJuridica = new PessoaJuridica("Zac", "", "35256",
