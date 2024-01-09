@@ -1,8 +1,6 @@
 package com.labswdgs.banktasks.services;
 
 import com.labswdgs.banktasks.entities.Conta;
-import com.labswdgs.banktasks.entities.PessoaFisica;
-import com.labswdgs.banktasks.exceptions.ContaNotFoundException;
 import com.labswdgs.banktasks.repositories.ContaRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -54,12 +52,7 @@ public class ContaService {
 
   @Transactional
   public void realizarSaque(Long pessoaFisicaId, double valor) {
-
-    PessoaFisica conta = contaRepository.findPessoaFisicaByContaId(pessoaFisicaId)
-        .orElseThrow(() -> new ContaNotFoundException("Conta não encontrada para a Pessoa Física com ID " + pessoaFisicaId));
-
-    // Verificar se o saldo é suficiente para o saque
-
+    
   }
 
 

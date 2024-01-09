@@ -3,13 +3,11 @@ package com.labswdgs.banktasks.config;
 import com.labswdgs.banktasks.entities.Agencia;
 import com.labswdgs.banktasks.entities.Conta;
 import com.labswdgs.banktasks.entities.Endereco.Endereco;
-import com.labswdgs.banktasks.entities.Pessoa;
 import com.labswdgs.banktasks.entities.PessoaFisica;
 import com.labswdgs.banktasks.entities.PessoaJuridica;
 import com.labswdgs.banktasks.entities.enums.TipoConta;
 import com.labswdgs.banktasks.repositories.PessoaFisicaRepository;
 import com.labswdgs.banktasks.services.AgenciaService;
-import com.labswdgs.banktasks.services.ContaService;
 import com.labswdgs.banktasks.services.PessoaFisicaService;
 import com.labswdgs.banktasks.services.PessoaJuridicaService;
 import java.util.Collections;
@@ -31,10 +29,7 @@ public class testSeed implements CommandLineRunner {
 
   @Autowired
   private PessoaJuridicaService pessoaJuridicaService;
-
-
-  @Autowired
-  private ContaService contaService;
+  
 
   @Autowired
   private PessoaFisicaRepository pessoaFisicaRepository;
@@ -49,7 +44,6 @@ public class testSeed implements CommandLineRunner {
 
     Endereco endereco = new Endereco("Rua dos Martires", "Comp",
         1746, "Santo Andre", "SP", "09070320");
-    Pessoa pessoa = new Pessoa("Jhon", "1235", "959959559");
 
     // Seed para Agencia
     Agencia agencia = new Agencia(123, "Endereço da Agência");
