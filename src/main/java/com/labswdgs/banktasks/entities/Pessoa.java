@@ -1,6 +1,7 @@
 package com.labswdgs.banktasks.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.labswdgs.banktasks.entities.Endereco.Endereco;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,11 +11,9 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
@@ -26,22 +25,21 @@ public class Pessoa {
   private Long id;
 
   private String nome;
-
   private String email;
-
+  private Endereco endereco;
 
   @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
   @JsonIgnore
   private PessoaFisica pessoaFisica;
 
-  public Pessoa(Long id, String nome, String email) {
-    this.id = id;
+  public Pessoa(){}
+
+  public Pessoa(String nome, String email, Endereco endereco) {
     this.nome = nome;
     this.email = email;
+    this.endereco = endereco;
   }
 
-  public Pessoa(String nome, String endereco, String telefone) {
-  }
 
 
 }

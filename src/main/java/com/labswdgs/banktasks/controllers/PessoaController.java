@@ -26,7 +26,7 @@ public class PessoaController {
     return pessoaService.getPessoa(id);
   }
 
-  @PostMapping
+  @PostMapping("/criar-pessoa")
   public Pessoa criarPessoa(@RequestBody Pessoa pessoa) {
     return pessoaService.criarPessoa(pessoa);
   }

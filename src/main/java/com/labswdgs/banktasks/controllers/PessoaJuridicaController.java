@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pessoasJuridicas")
+@RequestMapping("/pessoa-juridica")
 public class PessoaJuridicaController {
 
   @Autowired
@@ -25,7 +25,7 @@ public class PessoaJuridicaController {
     return pessoaJuridicaService.getPessoaJuridica(id);
   }
 
-  @PostMapping
+  @PostMapping("/criar-pessoa")
   public PessoaJuridica criarPessoaJuridica(@RequestBody PessoaJuridica pessoaJuridica) {
     return pessoaJuridicaService.criarPessoaJuridica(pessoaJuridica);
   }

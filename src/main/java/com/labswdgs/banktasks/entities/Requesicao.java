@@ -4,14 +4,19 @@ package com.labswdgs.banktasks.entities;
 public class Requesicao {
 
   private Long pessoaFisicaId;
-  private double valor;
+  private String valor;
 
   public Requesicao() {
   }
 
-  public Requesicao(Long pessoaFisicaId, double valor) {
+  public Requesicao(Long pessoaFisicaId, String valor) {
     this.pessoaFisicaId = pessoaFisicaId;
     this.valor = valor;
+  }
+
+  public Requesicao(String valor) {
+
+    this.valor=valor;
   }
 
   public Long getPessoaFisicaId() {
@@ -22,11 +27,11 @@ public class Requesicao {
     this.pessoaFisicaId = pessoaFisicaId;
   }
 
-  public double getValor() {
+  public String getValor() {
     return valor;
   }
 
-  public void setValor(double valor) {
+  public void setValor(String valor) {
     this.valor = valor;
   }
 }

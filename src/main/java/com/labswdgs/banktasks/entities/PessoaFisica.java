@@ -32,10 +32,12 @@ public class PessoaFisica extends Pessoa {
   public PessoaFisica() {
   }
 
-  public PessoaFisica(String nome, String email, Endereco endereco, String cpf) {
-    super(nome, email, String.valueOf(endereco));
-    this.cpf = cpf;
-  }
+  public PessoaFisica(String nome, String email,
+      Endereco endereco, String cpf) {
+    super(nome, email, endereco);
+    this.cpf = cpf;  }
+
+
 
   public List<Conta> getContas() {
     return contas;

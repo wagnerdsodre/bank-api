@@ -47,21 +47,6 @@ public class PessoaFisicaService {
     pessoaFisicaRepository.deleteById(id);
   }
 
-  public boolean realizarSaque(Long pessoaFisicaId, double valor) {
-    PessoaFisica pessoaFisica = pessoaFisicaRepository.findById(pessoaFisicaId).orElse(null);
-
-    if (pessoaFisica != null && pessoaFisica.getConta() != null) {
-      Conta conta = pessoaFisica.getConta();
-
-      if (conta.getSaldo() >= valor) {
-        conta.setSaldo(conta.getSaldo() - valor);
-        pessoaFisicaRepository.save(pessoaFisica);
-        return true;
-      }
-    }
-    return false;
-  }
-
   public List<Conta> encontrarContasPorPessoaFisicaId(Long pessoaFisicaId) {
     return pessoaFisicaRepository.findContasByPessoaFisicaId(pessoaFisicaId);
   }

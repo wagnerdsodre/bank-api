@@ -27,8 +27,9 @@ public class PessoaFisicaControllerTest {
 
   @Test
   public void testCriarPessoaFisica() {
-    PessoaFisica pessoaFisicaInput = new PessoaFisica("João", "joao@email.com",
-        new Endereco("Rua A", "comple", 123, "", "", ""), "123.456.789-09");
+    Endereco endereco =  new Endereco("Rua A", "comple", 123,
+        "Santo Andre", "SP", "09070528");
+    PessoaFisica pessoaFisicaInput = new PessoaFisica("Jhonny","jhonny@gmail.com",endereco,"12545879652");
 
     when(pessoaFisicaService.criarPessoaFisica(any(PessoaFisica.class))).thenReturn(
         pessoaFisicaInput);

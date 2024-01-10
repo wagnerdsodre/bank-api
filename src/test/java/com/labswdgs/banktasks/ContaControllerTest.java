@@ -9,6 +9,7 @@ import com.labswdgs.banktasks.controllers.ContaController;
 import com.labswdgs.banktasks.entities.Conta;
 import com.labswdgs.banktasks.entities.enums.TipoConta;
 import com.labswdgs.banktasks.services.ContaService;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -32,8 +33,8 @@ public class ContaControllerTest {
   public void testListarContas() {
 
     List<Conta> contasMock = new ArrayList<>();
-    contasMock.add(new Conta(1, 100.0, TipoConta.CORRENTE));
-    contasMock.add(new Conta(2, 200.0, TipoConta.EMPRESARIAL));
+    contasMock.add(new Conta(1, new BigDecimal(100.0), TipoConta.CORRENTE));
+    contasMock.add(new Conta(2, new BigDecimal(200.0), TipoConta.EMPRESARIAL));
 
     when(contaService.listarContas()).thenReturn(contasMock);
 

@@ -16,7 +16,7 @@
   <description>Simulation bank transactional</description>
   <properties>
     <java.version>17</java.version>
-    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+    <org.modelmapper.version>3.2.0</org.modelmapper.version>
   </properties>
   <dependencies>
     <dependency>
@@ -28,6 +28,12 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+      <version>${org.modelmapper.version}</version>
     </dependency>
 
     <dependency>

@@ -1,11 +1,15 @@
 package com.labswdgs.banktasks.services;
 
 import com.labswdgs.banktasks.entities.Conta;
+import com.labswdgs.banktasks.entities.Requesicao;
+import com.labswdgs.banktasks.entities.dto.ContaDTO;
 import com.labswdgs.banktasks.exceptions.ResourceNotFoundException;
 import com.labswdgs.banktasks.exceptions.SaldoInsuficienteException;
 import com.labswdgs.banktasks.repositories.ContaRepository;
 import jakarta.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,10 +20,13 @@ public class ContaService {
   @Autowired
   private ContaRepository contaRepository;
 
-  public ResponseEntity<Conta> getConta(Long id) {
+  @Autowired
+  private ModelMapper modelMapper;
+
+  public ResponseEntity<ContaDTO> getConta(Long id) {
     Conta conta = contaRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Resource Not found"));
-    return ResponseEntity.ok().body(conta);
+    return ResponseEntity.ok().body(modelMapper.map(conta, ContaDTO.class));
   }
 
   public List<Conta> listarContas() {
@@ -34,15 +41,12 @@ public class ContaService {
     Conta contaExistente = contaRepository.findById(id).orElse(null);
 
     if (contaExistente != null) {
-      // Atualize os campos necessários da contaExistente com os valores da contaAtualizada
       contaExistente.setNumero(contaAtualizada.getNumero());
       contaExistente.setSaldo(contaAtualizada.getSaldo());
       contaExistente.setTipo(contaAtualizada.getTipo());
 
-      // Adicione lógica de validação ou regras de negócios antes de salvar a conta atualizada
       return contaRepository.save(contaExistente);
     } else {
-      // Lidar com o caso em que a conta não foi encontrada
       return null;
     }
   }
@@ -53,31 +57,18 @@ public class ContaService {
 
 
   @Transactional
-  public void realizarSaque(Long id, double valor) {
+  public void realizarSaque(Long id, Requesicao Inputvalor) {
     Conta conta = contaRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Resource Not found"));
-    conta.setSaldo(conta.getSaldo()-valor);
 
-    if (conta.getSaldo() >= valor) {
-      conta.setSaldo(conta.getSaldo() - valor);
+    BigDecimal valorInput = new BigDecimal(Inputvalor.getValor());
+
+    if (conta.getSaldo().doubleValue() >= valorInput.doubleValue()) {
+      conta.setSaldo(conta.getSaldo().subtract(valorInput));
       contaRepository.save(conta);
     } else {
       throw new SaldoInsuficienteException("Saldo insuficiente para o saque.");
     }
-
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
 
 }

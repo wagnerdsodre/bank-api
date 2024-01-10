@@ -1,5 +1,6 @@
 package com.labswdgs.banktasks.entities;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.labswdgs.banktasks.entities.enums.TipoConta;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,42 +10,39 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
-public class Conta {
+@JsonPropertyOrder({"id","numero","saldo","tipo"})
+public class Conta  implements Serializable {
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private int numero;
-  private double saldo;
+  private Integer numero;
+  private BigDecimal saldo;
 
   @Enumerated(EnumType.STRING)
   private TipoConta tipo;
 
-  // Relacionamento Conta -> Agencia
   @ManyToOne
   @JoinColumn(name = "agencia_id")
   private Agencia agencia;
-
-  // Relacionamento Conta -> PessoaFisica
 
   @ManyToOne
   @JoinColumn(name = "pessoa_fisica_id")
   private PessoaFisica pessoaFisica;
 
-  // Relacionamento Conta -> PessoaJuridica
   @ManyToOne
   @JoinColumn(name = "pessoa_juridica_id")
   private PessoaJuridica pessoaJuridica;
 
+  public Conta() {    }
 
-  public Conta() {
-    // Construtor para JPA
-  }
-
-  public Conta(int numero, double saldo, TipoConta tipo) {
+  public Conta(Integer numero, BigDecimal saldo, TipoConta tipo) {
     this.numero = numero;
     this.saldo = saldo;
     this.tipo = tipo;
@@ -59,19 +57,19 @@ public class Conta {
     this.id = id;
   }
 
-  public int getNumero() {
+  public Integer getNumero() {
     return numero;
   }
 
-  public void setNumero(int numero) {
+  public void setNumero(Integer numero) {
     this.numero = numero;
   }
 
-  public double getSaldo() {
+  public BigDecimal getSaldo() {
     return saldo;
   }
 
-  public void setSaldo(double saldo) {
+  public void setSaldo(BigDecimal saldo) {
     this.saldo = saldo;
   }
 

@@ -3,7 +3,6 @@ package com.labswdgs.banktasks.controllers;
 
 import com.labswdgs.banktasks.entities.Conta;
 import com.labswdgs.banktasks.entities.PessoaFisica;
-import com.labswdgs.banktasks.entities.Requesicao;
 import com.labswdgs.banktasks.services.PessoaFisicaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pessoas-fisica")
+@RequestMapping("/pessoa-fisica")
 public class PessoaFisicaController {
 
   @Autowired
@@ -31,7 +30,7 @@ public class PessoaFisicaController {
     return pessoaFisicaService.getPessoaFisica(id);
   }
 
-  @PostMapping
+  @PostMapping("/criar-pessoa")
   public PessoaFisica criarPessoaFisica(@RequestBody PessoaFisica pessoaFisica) {
     return pessoaFisicaService.criarPessoaFisica(pessoaFisica);
   }
@@ -63,17 +62,5 @@ public class PessoaFisicaController {
     return new ResponseEntity<>(contas, HttpStatus.OK);
   }
 
-
-  @PostMapping("/realizarSaque")
-  public ResponseEntity<String> realizarSaque(@RequestBody Requesicao saque) {
-    boolean saqueRealizado = pessoaFisicaService.realizarSaque(saque.getPessoaFisicaId(),
-        saque.getValor());
-
-    if (saqueRealizado) {
-      return ResponseEntity.ok("Saque realizado com sucesso");
-    } else {
-      return ResponseEntity.badRequest().body("Não foi possível realizar o saque");
-    }
-  }
 
 }
