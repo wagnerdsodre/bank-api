@@ -21,6 +21,30 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 
 ### Cadastro e pesquisa da Pessoa Jurídica:
 - Criar Pessoa Jurídica: http://localhost:8080/pessoa-juridica/criar-pessoa
+
+```json
+	{
+		"id":1,
+		"nome": "Jonh Doe",	
+		"email":"jonhdoe@gmail.com",
+		"endereco": {
+			"cep": "09562658",
+			"cidade": "Santo André",
+			"complemento": "apto",
+			"logradouro": "Aqui perto",
+			"numero": 1256,		
+			"uf": "SP"
+			},
+	"cnpj": "67125235623562"
+	}
+```
+- Pesquisar PJ por Id : http://localhost:8080/pessoa-juridica/1
+
+
+### Pessoa Física:
+- Criar Pessoa Física : http://localhost:8080/pessoa-fisica/criar-pessoa
+
+POST /customer
 ```json
 	{
 		"id":1,
@@ -37,18 +61,14 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 	"cnpj": "67125235623562"	OR "cpf":"12345678999"  
 	}
 ```
-- Pesquisar PJ por Id : http://localhost:8080/pessoa-juridica/1
-
-
-### Pessoa Física:
-- Criar Pessoa Física : http://localhost:8080/pessoa-fisica/criar-pessoa
 - Pesquisar CPF por Id : http://localhost:8080/pessoa-fisica/1
 
 
 ### Contas:
 - Obter Contas por id: http://localhost:8080/contas/1
 - Realizar Saque por conta: http://localhost:8080/contas/saque/1
-    POST /customer
+
+POST /customer
 ```json
     {	
         "valor": "100.0"		
