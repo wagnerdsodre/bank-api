@@ -19,7 +19,7 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 
 ## 📄 Documentação
 
-# Cadastro e pesquisa da Pessoa Jurídica:
+### Cadastro e pesquisa da Pessoa Jurídica:
 - Criar Pessoa Jurídica: http://localhost:8080/pessoa-juridica/criar-pessoa
 ```json
 	{
@@ -40,12 +40,12 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 - Pesquisar PJ por Id : http://localhost:8080/pessoa-juridica/1
 
 
-# Pessoa Física:
+### Pessoa Física:
 - Criar Pessoa Física : http://localhost:8080/pessoa-fisica/criar-pessoa
 - Pesquisar CPF por Id : http://localhost:8080/pessoa-fisica/1
 
 
-# Contas:
+### Contas:
 - Obter Contas por id: http://localhost:8080/contas/1
 - Realizar Saque por conta: http://localhost:8080/contas/saque/1
     POST /customer
