@@ -24,17 +24,17 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 
 ```json
 	{
-		"id":1,
-		"nome": "Jonh Doe",	
-		"email":"jonhdoe@gmail.com",
-		"endereco": {
-			"cep": "09562658",
-			"cidade": "Santo André",
-			"complemento": "apto",
-			"logradouro": "Aqui perto",
-			"numero": 1256,		
-			"uf": "SP"
-			},
+	"id":1,
+	"nome": "Jonh Doe",	
+	"email":"jonhdoe@gmail.com",
+	"endereco": {
+		"cep": "09562658",
+		"cidade": "Santo André",
+		"complemento": "apto",
+		"logradouro": "Aqui perto",
+		"numero": 1256,		
+		"uf": "SP"
+		},
 	"cnpj": "67125235623562"
 	}
 ```
@@ -47,18 +47,18 @@ Abertura, deleção lógica, transferência entre contas, depósito, saques;
 POST /customer
 ```json
 	{
-		"id":1,
-		"nome": "Jonh Doe",	
-		"email":"jonhdoe@gmail.com",
-		"endereco": {
-			"cep": "09562658",
-			"cidade": "Santo André",
-			"complemento": "apto",
-			"logradouro": "Aqui perto",
-			"numero": 1256,		
-			"uf": "SP"
-			},
-	"cnpj": "67125235623562"	OR "cpf":"12345678999"  
+	"id":1,
+	"nome": "Jonh Doe",	
+	"email":"jonhdoe@gmail.com",
+	"endereco": {
+		"cep": "09562658",
+		"cidade": "Santo André",
+		"complemento": "apto",
+		"logradouro": "Aqui perto",
+		"numero": 1256,		
+		"uf": "SP"
+		},
+	"cpf":"12345678999"  
 	}
 ```
 - Pesquisar CPF por Id : http://localhost:8080/pessoa-fisica/1
